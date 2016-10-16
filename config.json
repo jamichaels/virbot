@@ -1,0 +1,17 @@
+{
+  "nickname" : "virbot1",
+  "realname" : "Channel Bot",
+  "channel" : "#blackgate",
+  "server" : {
+    "name" : "us.undernet.org",
+    "port" : 6667
+  },
+  "irccommands" : {
+    "join" : "JOIN {0}\n",
+    "nick" : "NICK {0}\n",
+    "pong" : "PONG {0}\n",
+    "privmsg" : "PRIVMSG {0} :{1}\n",
+    "user" : "USER {0} {1} {2} :{3}\n"
+  },
+  "useragent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit 537.36 (KHTML, like Gecko) Chrome"
+}
