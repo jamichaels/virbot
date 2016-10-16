@@ -1,4 +1,4 @@
-import platform
+import botcommands
 import re
 import socket
 import sys
@@ -24,8 +24,9 @@ def processChatMessage(irc, sender, command, receiver, message):
     requester = getRequester(False, sender) if receiver == nick else receiver
     isFromChannel = requester.startswith("#")
 
-    if message.startswith("!host"):
-        irc.send(botCommands["!host"].format(requester, str(platform.platform())))
+    if botCommands.get(message.split()[0], None) != None:
+        commandMethod = getattr(botcommands, botCommands[message.split()[0]])
+        commandMethod(irc, ircComands, requester, message)
 
 def main(argv):
     sentUser = False
