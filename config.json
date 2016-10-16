@@ -7,7 +7,7 @@
     "port" : 6667
   },
   "botcommands" : {
-    "!host" : "PRIVMSG {0} :{1}\n"
+    "!host" : "host_command"
   },
   "irccommands" : {
     "join" : "JOIN {0}\n",
