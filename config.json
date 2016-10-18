@@ -17,6 +17,9 @@
     "quit" : "QUIT :{0}\n",
     "user" : "USER {0} {1} {2} :{3}\n"
   },
+  "numerics" : {
+    "255" : "numeric_255"
+  },
   "strings" :{
     "quitmessage" : "Bot Terminated",
     "useragent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit 537.36 (KHTML, like Gecko) Chrome"
