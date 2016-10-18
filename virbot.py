@@ -1,4 +1,4 @@
-import botcommands
+import commands
 import numerics
 import re
 import socket
@@ -28,8 +28,11 @@ def processChatMessage(irc, sender, command, receiver, message):
 
     if config["botcommands"].get(commandLookup, None) != None:
         hues.log(hues.huestr("Sent: " + commandLookup + " RESPONSE to " + requester).magenta.bold.colorized)
-        commandMethod = getattr(botcommands, config["botcommands"][commandLookup])
-        commandMethod(irc, config["irccommands"], requester, message)
+        commandMethod = getattr(commands, config["botcommands"][commandLookup])
+        if (len(message.split()) == 1):
+            commandMethod(irc, config, requester, None)
+        else:
+            commandMethod(irc, config, requester, message.replace(commandLookup, ""))
 
 def main(argv):
     sentUser = False
@@ -72,9 +75,7 @@ def main(argv):
                                        messageMatches.group(3)[:-1], messageMatches.group(4))
 
     except KeyboardInterrupt:
-        irc.send(config["irccommands"]["quit"].format(config["strings"]["quitmessage"]))
-        print "\n"
-        sys.exit()
+        commands.kill_command(irc, config, None, None)
 
 if __name__ == "__main__":
     reload(sys)
@@ -84,7 +85,6 @@ if __name__ == "__main__":
         config = json.load(configFile)
 
     nick = config["nickname"]
-    channel = config["channel"]
     realname = config["realname"]
 
     main(sys.argv[1:])
