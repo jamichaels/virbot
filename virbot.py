@@ -13,13 +13,17 @@ def getRequester(usesPrefix, text):
         return str(requestMatches.group())
     return ""
 
-def processServerMessage(irc, host, numeric, user, message):
-    hues.log(hues.huestr("Server: " + message).blue.bold.colorized)
+def processSentMessage(message):
+    hues.log(hues.huestr("[SENT] " + message).magenta.bold.colorized)
 
+def processServerMessage(irc, host, numeric, user, message):
     if config["numerics"].get(numeric, None) != None:
-        hues.log(hues.huestr("Sent Response for Numeric: " + numeric).magenta.bold.colorized)
         commandMethod = getattr(numerics, config["numerics"][numeric])
         commandMethod(irc, config, host, user, message)
+    elif numeric == "NOTICE":
+        hues.log(hues.huestr("[NOTICE] " + message).blue.bold.colorized)
+    else:
+        hues.log(hues.huestr("[SERVER] " + message).cyan.bold.colorized)
 
 def processChatMessage(irc, sender, command, receiver, message):
     message = message[1:] if message.startswith(":") else message
@@ -27,7 +31,7 @@ def processChatMessage(irc, sender, command, receiver, message):
     commandLookup = message.split()[0]
 
     if config["botcommands"].get(commandLookup, None) != None:
-        hues.log(hues.huestr("Sent: " + commandLookup + " RESPONSE to " + requester + " (" + sender + ")").magenta.bold.colorized)
+        hues.log(hues.huestr("[RECEIVED] " + commandLookup + " command FROM " + requester + " (" + sender + ")").green.colorized)
         commandMethod = getattr(commands, config["botcommands"][commandLookup])
         if (len(message.split()) == 1):
             commandMethod(irc, config, requester, None)
@@ -56,19 +60,19 @@ def main(argv):
 
             if data.find('PING') != -1:
                 irc.send(config["irccommands"]["pong"].format(data.split()[1]))
-                hues.log(hues.huestr("Sent: PONG").magenta.bold.colorized)
+                processSentMessage("PONG" + " (" + data.split()[1][1:] + ")")
                 continue
 
             if sentUser == False:
                 irc.send(config["irccommands"]["user"].format(nick, nick, nick, realname))
                 sentUser = True
-                hues.log(hues.huestr("Sent: USER").magenta.bold.colorized)
+                processSentMessage("USER")
                 continue
 
             if sentUser and sentNick == False:
                 irc.send(config["irccommands"]["nick"].format(nick))
                 sentNick = True
-                hues.log(hues.huestr("Sent: NICK").magenta.bold.colorized)
+                processSentMessage("NICK" + " (" + nick + ")")
                 continue
 
             for lineText in data.split("\r\n"):
