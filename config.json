@@ -6,6 +6,7 @@
     "name" : "us.undernet.org",
     "port" : 6667
   },
+  "debugmode" : false,
   "botcommands" : {
     "!host" : "host_command",
     "!join" : "join_command",
@@ -22,7 +23,7 @@
     "user" : "USER {0} {1} {2} :{3}\n"
   },
   "numerics" : {
-    "255" : "numeric_255"
+    "376" : "numeric_376"
   },
   "strings" :{
     "quitmessage" : "Bot Terminated",
