@@ -27,7 +27,7 @@ def processChatMessage(irc, sender, command, receiver, message):
     commandLookup = message.split()[0]
 
     if config["botcommands"].get(commandLookup, None) != None:
-        hues.log(hues.huestr("Sent: " + commandLookup + " RESPONSE to " + requester).magenta.bold.colorized)
+        hues.log(hues.huestr("Sent: " + commandLookup + " RESPONSE to " + requester + " (" + sender + ")").magenta.bold.colorized)
         commandMethod = getattr(commands, config["botcommands"][commandLookup])
         if (len(message.split()) == 1):
             commandMethod(irc, config, requester, None)
@@ -45,6 +45,14 @@ def main(argv):
             data = irc.recv(2048)
             if len(data) <= 0:
                 continue
+
+            if config["debugmode"]:
+                print data
+
+            if data.startswith('ERROR') == True:
+                #TODO: Add proper error output and reconnection if configured
+                hues.log(hues.huestr(data).magenta.bold.colorized)
+                sys.exit()
 
             if data.find('PING') != -1:
                 irc.send(config["irccommands"]["pong"].format(data.split()[1]))
