@@ -23,6 +23,8 @@
     "user" : "USER {0} {1} {2} :{3}\n"
   },
   "numerics" : {
+    "332" : "numeric_332",
+    "353" : "numeric_353",
     "372" : "numeric_372",
     "375" : "numeric_375",
     "376" : "numeric_376"
