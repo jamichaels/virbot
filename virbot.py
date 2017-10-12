@@ -58,10 +58,20 @@ def main(argv):
                 hues.log(hues.huestr(data).magenta.bold.colorized)
                 sys.exit()
 
-            if data.find('PING') != -1:
+            if data.find('PING') != -1 and data.find(u"\u0001PING") == -1:
                 irc.send(config["irccommands"]["pong"].format(data.split()[1]))
-                processSentMessage("PONG" + " (" + data.split()[1][1:] + ")")
+                processSentMessage("PONG to SERVER" + " (" + data.split()[1][1:] + ")")
                 continue
+
+            if data.find(u"\u0001PING") != -1:
+                requester = getRequester(True, data)
+                if requester != None:
+                    pingindex = data.index(u"\u0001PING")
+                    pingreply = data[pingindex:]
+                    pingreply = pingreply.replace("\r\n", "")
+                    irc.send(u"NOTICE " + requester + u" :" + pingreply + u"\u0001\n")
+                    processSentMessage("PONG to " + requester + " (" + pingreply[6:] + ")")
+                    continue
 
             if sentUser == False:
                 irc.send(config["irccommands"]["user"].format(nick, nick, nick, realname))
