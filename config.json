@@ -11,6 +11,7 @@
     "!host" : "host_command",
     "!join" : "join_command",
     "!kill" : "kill_command",
+    "!lmgtfy" : "lmgtfy_command",
     "!part" : "part_command"
   },
   "irccommands" : {
@@ -24,6 +25,7 @@
   },
   "numerics" : {
     "332" : "numeric_332",
+    "333" : "numeric_333",
     "353" : "numeric_353",
     "372" : "numeric_372",
     "375" : "numeric_375",
