@@ -4,6 +4,12 @@ irc bot coded in python
 
 This project in beta. It is probably insecure. I don't recommend that you run it.
 
+## Requirements
+
+This script makes use of the [*hues*](https://pypi.org/project/hues/) library, which has been added to the *requirements.txt* file so you can install it by simply running the following command.
+
+    pip install -r requirements.txt
+
 ## License
 
 The MIT License
