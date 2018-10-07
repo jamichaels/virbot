@@ -10,7 +10,50 @@ This script makes use of the [*hues*](https://pypi.org/project/hues/) library, w
     
 ## Configuration
 
-The information for section is being worked on.
+The default configuration for this script can be found in the *config.json* file and looks like this.
+
+    {
+      "nickname" : "virbot1",
+      "realname" : "Channel Bot",
+      "channel" : "#blackgate",
+      "server" : {
+        "name" : "us.undernet.org",
+        "port" : 6667
+      },
+      "debugmode" : false,
+      "botcommands" : {
+        "!host" : "host_command",
+        "!join" : "join_command",
+        "!kill" : "kill_command",
+        "!lmgtfy" : "lmgtfy_command",
+        "!part" : "part_command"
+      },
+      "irccommands" : {
+        "join" : "JOIN {0}\n",
+        "part" : "PART {0}\n",
+        "nick" : "NICK {0}\n",
+        "pong" : "PONG {0}\n",
+        "privmsg" : "PRIVMSG {0} :{1}\n",
+        "quit" : "QUIT :{0}\n",
+        "user" : "USER {0} {1} {2} :{3}\n"
+      },
+      "numerics" : {
+        "332" : "numeric_332",
+        "333" : "numeric_333",
+        "353" : "numeric_353",
+        "372" : "numeric_372",
+        "375" : "numeric_375",
+        "376" : "numeric_376"
+      },
+      "strings" :{
+        "quitmessage" : "Bot Terminated",
+        "useragent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit 537.36 (KHTML, like Gecko) Chrome"
+      }
+    }
+    
+The first four elements of the json; *nickname*, *realname*, *channel* and *server* are the basic requirements for a client/bot to connect to an irc server. It is important to note that the bot's source has been updated to no longer join the channel from the configuration. If you'd like to have it join a channel upon connection, you'll need to issue the command in the proper numerics method.
+
+More details to come...
 
 ## License
 
