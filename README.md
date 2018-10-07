@@ -2,6 +2,8 @@
 
 This script was created to serve as a starting template of a dynamic irc bot that can be easily configured and have commands and functionality added with very little effort.
 
+![bot shot](images/botshot.png)
+
 ## Requirements
 
 This script makes use of the [*hues*](https://pypi.org/project/hues/) library, which has been added to the *requirements.txt* file so you can install it by simply running the following command.
@@ -51,7 +53,27 @@ The default configuration for this script can be found in the *config.json* file
       }
     }
     
-The first four elements of the json; *nickname*, *realname*, *channel* and *server* are the basic requirements for a client/bot to connect to an irc server. It is important to note that the bot's source has been updated to no longer join the channel from the configuration. If you'd like to have it join a channel upon connection, you'll need to issue the command in the proper numerics method.
+### **nickname, realname, channel and server**
+
+The first four elements of the json; **nickname**, **realname**, **channel** and **server** are the basic requirements for a client/bot to connect to an irc server. *It is important to note that the bot's source has been updated to no longer join the channel from the configuration. If you'd like to have it join a channel upon connection, you'll need to issue the command in the proper numerics method.*
+
+### **debugmode**
+
+The **debugmode** key when set to *true* allows you to see all messages received from the server in their raw format. This is really useful when you want to see how different irc servers for various messages and numerics to help you extend the bot's capabilities.
+
+### **botcommands**
+
+The **botcommands** object uses the format of: 
+
+    command name (as used from irc) : method name (which gets added to commands.py)
+
+When the bot receives a chat message from the server it gets passed to the *process_botcommand* method in commands.py. This method checks if the text received matches the input, and if it does, it'll find the matching configured method name from the class and calls it.
+
+The method declaration in *commands.py* is as follows and should be used for any commands you want to add.
+
+    def your_command(self, requester, message):
+    
+The *requester* is the nick or channel name that sent the message. The *message* parameter contains the text that came after the command string.
 
 More details to come...
 
