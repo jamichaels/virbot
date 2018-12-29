@@ -48,3 +48,8 @@ class VirBotCommands:
         messageParts = message.split()
         if (len(messageParts) == 1 and messageParts[0].startswith("#")):
             self.send_formatted_command("part", messageParts[0])
+            
+    def op_command(self, requester, message):
+        messageParts = message.split()
+        if (messageParts[0].startswith("#"))
+            self.send_formatted_command("op", messageParts[0], requester)
