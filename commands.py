@@ -50,6 +50,9 @@ class VirBotCommands:
             self.send_formatted_command("part", messageParts[0])
             
     def op_command(self, requester, message):
-        messageParts = message.split()
-        if (messageParts[0].startswith("#"))
-            self.send_formatted_command("op", messageParts[0], requester)
+        if message is None:
+            self.send_formatted_command("privmsg", requester, "Op command format: !op [username]")
+        else:
+            messageParts = message.split()
+            if (requester.startswith("#")):
+                self.send_formatted_command("op", requester, messageParts[0])
