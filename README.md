@@ -28,7 +28,8 @@ The default configuration for this script can be found in the *config.json* file
         "!join" : "join_command",
         "!kill" : "kill_command",
         "!lmgtfy" : "lmgtfy_command",
-        "!part" : "part_command"
+        "!part" : "part_command",
+        "!op!" : "op_command"
       },
       "irccommands" : {
         "join" : "JOIN {0}\n",
@@ -37,7 +38,8 @@ The default configuration for this script can be found in the *config.json* file
         "pong" : "PONG {0}\n",
         "privmsg" : "PRIVMSG {0} :{1}\n",
         "quit" : "QUIT :{0}\n",
-        "user" : "USER {0} {1} {2} :{3}\n"
+        "user" : "USER {0} {1} {2} :{3}\n",
+        "op" : "MODE {0} +o {1}\n"
       },
       "numerics" : {
         "332" : "numeric_332",
