@@ -13,7 +13,8 @@
     "!kill" : "kill_command",
     "!lmgtfy" : "lmgtfy_command",
     "!part" : "part_command",
-    "!op" : "op_command"
+    "!op" : "op_command",
+    "!deop" : "deop_command"
   },
   "irccommands" : {
     "join" : "JOIN {0}\n",
@@ -23,7 +24,8 @@
     "privmsg" : "PRIVMSG {0} :{1}\n",
     "quit" : "QUIT :{0}\n",
     "user" : "USER {0} {1} {2} :{3}\n",
-    "op" : "MODE {0} +o {1}\n"
+    "op" : "MODE {0} +o {1}\n",
+    "deop" : "MODE {0} -o {1}\n"
   },
   "numerics" : {
     "332" : "numeric_332",

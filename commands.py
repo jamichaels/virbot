@@ -56,3 +56,11 @@ class VirBotCommands:
             messageParts = message.split()
             if (requester.startswith("#")):
                 self.send_formatted_command("op", requester, messageParts[0])
+
+    def deop_command(self, requester, message):
+        if message is None:
+            self.send_formatted_command("privmsg", requester, "Deop command format: !deop [username]")
+        else:
+            messageParts = message.split()
+            if (requester.startswith("#")):
+                self.send_formatted_command("deop", requester, messageParts[0])
