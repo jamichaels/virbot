@@ -64,3 +64,11 @@ class VirBotCommands:
             messageParts = message.split()
             if (requester.startswith("#")):
                 self.send_formatted_command("deop", requester, messageParts[0])
+
+    def voice_command(self, requester, message):
+        if message is None:
+            self.send_formatted_command("privmsg", requester, "Voice command format: !voice [username]")
+        else:
+            messageParts = message.split()
+            if (requester.startswith("#")):
+                self.send_formatted_command("voice", requester, messageParts[0])
