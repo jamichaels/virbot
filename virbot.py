@@ -87,7 +87,7 @@ def main(argv):
 
 if __name__ == "__main__":
     reload(sys)
-    sys.setdefaultencoding('utf8')
+    #sys.setdefaultencoding('utf8')
 
     with open('config.json', 'r') as configFile:
         config = json.load(configFile)
